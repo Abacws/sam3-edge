@@ -258,7 +258,7 @@ def main():
         sam3_path = Path(__file__).parent.parent.parent / "sam3"
         _sys.path.insert(0, str(sam3_path))
 
-        from sam3.model_builder import build_sam3_image_model, build_sam3_pe_model
+        from sam3.model_builder import build_sam3_image_model
 
         # Determine device
         if torch.cuda.is_available():
@@ -273,6 +273,7 @@ def main():
 
         # Load model - PE or standard
         if args.use_pe:
+            from sam3.model_builder import build_sam3_pe_model
             logger.info("Loading SAM3 with PE backbone...")
             model = build_sam3_pe_model(
                 device=device,
